@@ -8,7 +8,7 @@ using Android.OS;
 
 namespace Xamarin
 {
-    [Activity(Label = "Xamarin", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Optrommelen", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
         int count = 1;
