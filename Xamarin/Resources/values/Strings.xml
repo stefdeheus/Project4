@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
+    <string name="Note">Note</string>
+    <string name="Save">Save</string>
+    <string name="Map">Map</string>
+    <string name="Charts">Charts</string>
+    <string name="TheftChart">TheftChart</string>
+    <string name="AmountChart">AmountChart</string>
+    <string name="DistributionChart">DistributionChart</string>
+    <string name="SpecificNeighborhoodChart">SpecificNeighborhoodChart</string>
+    <string name="Reminder">Reminder</string>
     <string name="ApplicationName">Xamarin</string>
 </resources>

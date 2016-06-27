@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
     <Button
-        android:text="@string/Note"
+        android:text="@string/AmountChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/NoteButton" />
+        android:id="@+id/AmountChartButton" />
     <Button
-        android:text="@string/Map"
+        android:text="@string/TheftChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/MapButton" />
+        android:id="@+id/TheftChartButton" />
     <Button
-        android:text="@string/Charts"
+        android:text="@string/DistributionChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ChartsButton" />
+        android:id="@+id/DistributionChartButton" />
     <Button
-        android:text="@string/Reminder"
+        android:text="@string/SpecificNeighborhoodChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ReminderButton" />
+        android:id="@+id/SpecificNeighborhoodButton" />
 </LinearLayout>
