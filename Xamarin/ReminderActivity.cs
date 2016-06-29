@@ -26,6 +26,7 @@ namespace Xamarin
 
             Button button1 = FindViewById<Button>(Resource.Id.SaveButton);
             button1.Click += Button1_Click;
+            
         }
 
         private void Button1_Click(object sender, EventArgs e)
