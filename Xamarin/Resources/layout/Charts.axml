@@ -25,4 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SpecificNeighborhoodButton" />
+    <Button
+        android:text="@string/DistributionChart2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DistributionChartButton2" />
 </LinearLayout>
