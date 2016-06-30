@@ -60,12 +60,15 @@
     <Compile Include="AmountChartActivity.cs" />
     <Compile Include="ChartsActivity.cs" />
     <Compile Include="DistributionChartActivity.cs" />
+    <Compile Include="DistributionChartActivity2.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MapActivity.cs" />
     <Compile Include="NoteActivity.cs" />
+    <Compile Include="Pie.cs" />
+    <Compile Include="Pie2.cs" />
     <Compile Include="ReminderActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

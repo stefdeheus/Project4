@@ -63,23 +63,26 @@ namespace Xamarin
 			// aapt resource value: 0x7f050000
 			public const int AmountChartButton = 2131034112;
 			
-			// aapt resource value: 0x7f050006
-			public const int ChartsButton = 2131034118;
+			// aapt resource value: 0x7f050007
+			public const int ChartsButton = 2131034119;
 			
 			// aapt resource value: 0x7f050002
 			public const int DistributionChartButton = 2131034114;
 			
-			// aapt resource value: 0x7f050005
-			public const int MapButton = 2131034117;
-			
 			// aapt resource value: 0x7f050004
-			public const int NoteButton = 2131034116;
+			public const int DistributionChartButton2 = 2131034116;
 			
-			// aapt resource value: 0x7f050007
-			public const int ReminderButton = 2131034119;
+			// aapt resource value: 0x7f050006
+			public const int MapButton = 2131034118;
+			
+			// aapt resource value: 0x7f050005
+			public const int NoteButton = 2131034117;
 			
 			// aapt resource value: 0x7f050008
-			public const int SaveButton = 2131034120;
+			public const int ReminderButton = 2131034120;
+			
+			// aapt resource value: 0x7f050009
+			public const int SaveButton = 2131034121;
 			
 			// aapt resource value: 0x7f050003
 			public const int SpecificNeighborhoodButton = 2131034115;
@@ -143,14 +146,17 @@ namespace Xamarin
 			// aapt resource value: 0x7f040005
 			public const int AmountChart = 2130968581;
 			
-			// aapt resource value: 0x7f040009
-			public const int ApplicationName = 2130968585;
+			// aapt resource value: 0x7f04000a
+			public const int ApplicationName = 2130968586;
 			
 			// aapt resource value: 0x7f040003
 			public const int Charts = 2130968579;
 			
 			// aapt resource value: 0x7f040006
 			public const int DistributionChart = 2130968582;
+			
+			// aapt resource value: 0x7f040009
+			public const int DistributionChart2 = 2130968585;
 			
 			// aapt resource value: 0x7f040002
 			public const int Map = 2130968578;

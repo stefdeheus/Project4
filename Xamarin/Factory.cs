@@ -21,6 +21,16 @@ namespace Xamarin
                 return new Line();
             }
 
+            else if (number == 2)
+            {
+                return new Pie();
+            }
+
+            else if (number == 3)
+            {
+                return new Pie2();
+            }
+
             else
             {
                 return null;

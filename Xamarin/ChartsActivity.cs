@@ -35,6 +35,14 @@ namespace Xamarin
 
             Button button4 = FindViewById<Button>(Resource.Id.SpecificNeighborhoodButton);
             button4.Click += Button4_Click;
+
+            Button button5 = FindViewById<Button>(Resource.Id.DistributionChartButton2);
+            button5.Click += Button5_Click;
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            StartActivity(typeof(DistributionChartActivity2));
         }
 
         private void Button4_Click(object sender, EventArgs e)
