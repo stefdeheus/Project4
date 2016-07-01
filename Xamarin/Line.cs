@@ -32,7 +32,7 @@ namespace Xamarin
             
 
             plot.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, });
-            plot.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Maximum = 780, Minimum = 0 }); // max = 780 omdat dat grootste gestolen amount is per maand.
+            plot.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Maximum = 1000 , Minimum = 400 }); // max = 780 omdat dat grootste gestolen amount is per maand.
 
             series = new LineSeries
             {
@@ -47,7 +47,9 @@ namespace Xamarin
 
             var sdwDBConnection = new SqlConnection(sdwConnectionString);
             sdwDBConnection.Open();
-            string query = "SELECT DATENAME(mm, Kennisname) AS Maand, COUNT (*) AS Totaal_Aantal_Gestolen_Fietsen FROM Fietsdiefstal GROUP BY DATENAME(mm, Kennisname)";
+            string query =
+                "SELECT DATENAME(mm, newKennisname) AS Maand, DATENAME(yyyy, newKennisname) AS Jaar, COUNT(*) AS Totaal_aantal_gestolen_fietsen FROM fietsdiefstal GROUP BY DATENAME(mm, newKennisname), DATENAME(yyyy, newKennisname), DATEPART(mm, newKennisname) ORDER BY Jaar ASC, DATEPART(mm, newKennisname) ASC;";
+
             SqlCommand queryCommand = new SqlCommand(query, sdwDBConnection);
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
@@ -56,6 +58,7 @@ namespace Xamarin
 
             List<string> amount = new List<string>();
             List<string> month = new List<string>();
+            List<string> jaar = new List<string>();
 
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
@@ -64,7 +67,8 @@ namespace Xamarin
                 foreach (DataRow row in dataTable.Rows)
                 {
                     month.Add(row[0].ToString());
-                    amount.Add(row[1].ToString());
+                    jaar.Add(row[1].ToString());
+                    amount.Add(row[2].ToString());
                 }
 
                 tableReader.Close();
@@ -102,7 +106,8 @@ namespace Xamarin
 
             return plot;
 
-            //SELECT DATENAME (mm, Kennisname) AS Maand, COUNT (*) AS Totaal_Aantal_Gestolen_Fietsen FROM Fietsdiefstal GROUP BY DATENAME (mm, Kennisname);
+            
         }
     }
 }
+
