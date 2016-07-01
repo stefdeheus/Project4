@@ -10,5 +10,6 @@
     <string name="SpecificNeighborhoodChart">SpecificNeighborhoodChart</string>
     <string name="Reminder">Reminder</string>
     <string name="DistributionChart2">DistributionChart2</string>
+    <string name="Neighborhoodchart">Neighborhoodchart</string>
     <string name="ApplicationName">Xamarin</string>
 </resources>

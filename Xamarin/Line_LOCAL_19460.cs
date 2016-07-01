@@ -32,9 +32,7 @@ namespace Xamarin
             
 
             plot.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, });
-
             plot.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Maximum = 1000 , Minimum = 400 }); // max = 780 omdat dat grootste gestolen amount is per maand.
-
 
             series = new LineSeries
             {
