@@ -11,6 +11,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Java.Security;
 using Org.Apache.Http.Impl.IO;
 using OxyPlot;
 using OxyPlot.Annotations;
@@ -23,25 +24,22 @@ namespace Xamarin
     {
         PlotModel plot;
         LineSeries series;
+        public List<int> month;
         public PlotModel CreatePlot()
         {
             plot = new PlotModel
             {
                 Title = "Amount of stolen bicycles per month"
+                
             };
-            
-
-            plot.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, });
-
-            plot.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Maximum = 1000 , Minimum = 400 }); // max = 780 omdat dat grootste gestolen amount is per maand.
-
 
             series = new LineSeries
             {
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 4,
-                MarkerStroke = OxyColors.White
+                MarkerStroke = OxyColors.White, FontSize = 20
             };
+
 
 
             string sdwConnectionString =
@@ -50,7 +48,7 @@ namespace Xamarin
             var sdwDBConnection = new SqlConnection(sdwConnectionString);
             sdwDBConnection.Open();
             string query =
-                "SELECT DATENAME(mm, newKennisname) AS Maand, DATENAME(yyyy, newKennisname) AS Jaar, COUNT(*) AS Totaal_aantal_gestolen_fietsen FROM fietsdiefstal GROUP BY DATENAME(mm, newKennisname), DATENAME(yyyy, newKennisname), DATEPART(mm, newKennisname) ORDER BY Jaar ASC, DATEPART(mm, newKennisname) ASC;";
+                "SELECT DATEPART(mm, newKennisname) AS Maand, DATEPART(yyyy, newKennisname) AS Jaar, COUNT(*) AS Totaal_aantal_gestolen_fietsen FROM fietsdiefstal GROUP BY DATEPART(mm, newKennisname), DATEPART(yyyy, newKennisname), DATEPART(mm, newKennisname) ORDER BY Jaar ASC, DATEPART(mm, newKennisname) ASC;";
 
             SqlCommand queryCommand = new SqlCommand(query, sdwDBConnection);
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
@@ -58,9 +56,9 @@ namespace Xamarin
             
             dataTable.Load(queryCommandReader);
 
-            List<string> amount = new List<string>();
-            List<string> month = new List<string>();
-            List<string> jaar = new List<string>();
+            List<int> amount = new List<int>();
+            month = new List<int>();
+            List<int> jaar = new List<int>();
 
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
@@ -68,48 +66,61 @@ namespace Xamarin
                 
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    month.Add(row[0].ToString());
-                    jaar.Add(row[1].ToString());
-                    amount.Add(row[2].ToString());
+                    month.Add(Convert.ToInt32(row[0]));
+                    jaar.Add(Convert.ToInt32(row[1]));
+                    amount.Add(Convert.ToInt32(row[2]));
+                    
                 }
 
                 tableReader.Close();
             }
+
+
             double dob;
             List<double> newAmount = new List<double>();
-            foreach (string am in amount)
+            foreach (int am in amount)
             {
                 dob = Convert.ToDouble(am);
                 newAmount.Add(dob);
             }
 
-            int a = 5;
+            int Jaar;
+            
             for (int i = 0; i < newAmount.Count; i++)
             {
-                series.Points.Add(new DataPoint(i,newAmount[i]));
-
-                plot.Annotations.Add(new TextAnnotation { TextPosition = new DataPoint(i,0), Text = month[i]});
+                Jaar = Convert.ToInt32(jaar[i]);
+                
+                series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(Jaar, month[i], 1)), newAmount[i]));              
             }
-           
-            
-            
-            
-            
-
-
-
-          
-            
+              
             sdwDBConnection.Close();
 
-        
+
+            DateTimeAxis Xas = new DateTimeAxis
+            {
+                Position = AxisPosition.Bottom,
+                StringFormat = "MMM/yyyy",
+                Title = "Months",
+                MinorIntervalType = DateTimeIntervalType.Months,
+                IntervalLength = 40,
+                IntervalType = DateTimeIntervalType.Months,
+                MajorGridlineStyle = LineStyle.Solid,
+                MinorGridlineStyle = LineStyle.None, 
+                IsZoomEnabled = false,
+                IsPanEnabled = false,
+               
+
+            };
+
+           
+            plot.Axes.Add(Xas);
+            plot.Axes.Add(new LinearAxis {Title = "Amount of Bike's", Position = AxisPosition.Left, Maximum = 500, Minimum = 200, IsZoomEnabled = false, IsPanEnabled = false }); // max = 780 omdat dat grootste gestolen amount is per maand.
+
 
             plot.Series.Add(series);
 
             return plot;
-
-            
-        }
+            }
     }
 }
 

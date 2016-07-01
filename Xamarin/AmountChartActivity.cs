@@ -33,7 +33,7 @@ namespace Xamarin
             plotView.Model = grafiek.CreatePlot();
 
             this.AddContentView(plotView,
-            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, 1200));
 
         }
     }
