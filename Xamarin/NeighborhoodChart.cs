@@ -14,8 +14,8 @@ using OxyPlot.Xamarin.Android;
 
 namespace Xamarin
 {
-    [Activity(Label = "SpecificNeighborhoodChart")]
-    public class SpecificNeighborhoodChart : Activity
+    [Activity(Label = "NeighborhoodChart")]
+    public class NeighborhoodChart : Activity
     {
         PlotView plotView;
         Factory dp;
@@ -27,13 +27,15 @@ namespace Xamarin
             // Create your application here
 
             dp = new Factory();
-            grafiek = dp.Create(5);
+            grafiek = dp.Create(4);
 
             plotView = new PlotView(this);
             plotView.Model = grafiek.CreatePlot();
 
             this.AddContentView(plotView,
             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+
+
         }
     }
 }

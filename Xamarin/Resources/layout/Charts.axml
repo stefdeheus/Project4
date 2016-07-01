@@ -11,11 +11,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/AmountChartButton" />
     <Button
-        android:text="@string/TheftChart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/TheftChartButton" />
-    <Button
         android:text="@string/DistributionChart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,4 +25,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/DistributionChartButton2" />
+    <Button
+        android:text="@string/Neighborhoodchart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NeighborhoodButton2" />
 </LinearLayout>

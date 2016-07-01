@@ -27,9 +27,6 @@ namespace Xamarin
             Button button1 = FindViewById<Button>(Resource.Id.AmountChartButton);
             button1.Click += Button1_Click;
 
-            Button button2 = FindViewById<Button>(Resource.Id.TheftChartButton);
-            button2.Click += Button2_Click;
-
             Button button3 = FindViewById<Button>(Resource.Id.DistributionChartButton);
             button3.Click += Button3_Click;
 
@@ -38,6 +35,14 @@ namespace Xamarin
 
             Button button5 = FindViewById<Button>(Resource.Id.DistributionChartButton2);
             button5.Click += Button5_Click;
+
+            Button button6 = FindViewById<Button>(Resource.Id.NeighborhoodButton2);
+            button6.Click += Button6_Click;
+        }
+
+        private void Button6_Click(object sender, EventArgs e)
+        {
+            StartActivity(typeof(NeighborhoodChart));
         }
 
         private void Button5_Click(object sender, EventArgs e)
@@ -53,11 +58,6 @@ namespace Xamarin
         private void Button3_Click(object sender, EventArgs e)
         {
             StartActivity(typeof(DistributionChartActivity));
-        }
-
-        private void Button2_Click(object sender, EventArgs e)
-        {
-            StartActivity(typeof(TheftChartActivity));
         }
 
         private void Button1_Click(object sender, EventArgs e)
