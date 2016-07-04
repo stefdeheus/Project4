@@ -90,6 +90,12 @@ namespace Xamarin
 			// aapt resource value: 0x7f050002
 			public const int SpecificNeighborhoodButton = 2131034114;
 			
+			// aapt resource value: 0x7f05000b
+			public const int editText = 2131034123;
+			
+			// aapt resource value: 0x7f05000c
+			public const int textView = 2131034124;
+			
 			// aapt resource value: 0x7f050005
 			public const int textView1 = 2131034117;
 			
