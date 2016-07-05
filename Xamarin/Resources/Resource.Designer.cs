@@ -106,11 +106,17 @@ namespace Xamarin
 			// aapt resource value: 0x7f060002
 			public const int SpecificNeighborhoodButton = 2131099650;
 			
-			// aapt resource value: 0x7f06000c
-			public const int bar2 = 2131099660;
+			// aapt resource value: 0x7f06000e
+			public const int bar2 = 2131099662;
 			
 			// aapt resource value: 0x7f06000b
-			public const int spinner1 = 2131099659;
+			public const int editText = 2131099659;
+			
+			// aapt resource value: 0x7f06000d
+			public const int spinner1 = 2131099661;
+			
+			// aapt resource value: 0x7f06000c
+			public const int textView = 2131099660;
 			
 			// aapt resource value: 0x7f060005
 			public const int textView1 = 2131099653;
@@ -150,19 +156,16 @@ namespace Xamarin
 			public const int Neighborhood = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int NodeLayout = 2130903047;
+			public const int Note = 2130903047;
 			
 			// aapt resource value: 0x7f030008
-			public const int Note = 2130903048;
+			public const int Reminder = 2130903048;
 			
 			// aapt resource value: 0x7f030009
-			public const int Reminder = 2130903049;
+			public const int SpecificNeighborhood = 2130903049;
 			
 			// aapt resource value: 0x7f03000a
-			public const int SpecificNeighborhood = 2130903050;
-			
-			// aapt resource value: 0x7f03000b
-			public const int TheftChart = 2130903051;
+			public const int TheftChart = 2130903050;
 			
 			static Layout()
 			{

@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Android.Provider;
+using Uri = Android.Net.Uri;
 
 namespace Xamarin
 {
@@ -20,18 +15,26 @@ namespace Xamarin
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Reminder);
-
-            Button button1 = FindViewById<Button>(Resource.Id.SaveButton);
-            button1.Click += Button1_Click;
-            
+            var createappointment = FindViewById(Resource.Id.SaveButton);
+            var editText = FindViewById(Resource.Id.editText);
+            var textView = FindViewById(Resource.Id.textView);
+            createappointment.Click += Createappointment_Click;
         }
-
-        private void Button1_Click(object sender, EventArgs e)
+        //editText.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) => {
+        //       textView.Text = e.Text.ToString ();
+        //};
+    private void Createappointment_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(MainActivity));
+            Intent myIntent = new Intent(Intent.ActionInsert, Uri.Parse("content://com.android.calendar/events"));
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.Title, "Je fiets optrommelen.");
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.EventLocation, "Wijnhaven 107");
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.Description, "Calendar Intent To Insert an new event.");
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.AllDay, "0");
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.HasAlarm, "1");
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.Dtstart, DateTime.Now.ToString());
+            myIntent.PutExtra(CalendarContract.Events.InterfaceConsts.Dtend, DateTime.Now.ToString());
+            StartActivity(myIntent);
         }
     }
 }

@@ -106,8 +106,13 @@ namespace Xamarin
            
 
             sdwDBConnection.Close();
+            List<string> stringlist = new List<string>();
+            for (int i = 1; i <= 49; i++)
+            {
+                
 
 
+            }
 
 
             //var s1 = new BarSeries { Title = "Amount of installed bicycle containers", StrokeColor = OxyColors.Black, StrokeThickness = 1 };

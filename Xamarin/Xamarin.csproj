@@ -81,7 +81,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="MapActivity.cs" />
     <Compile Include="NeighborhoodChart.cs" />
-    <Compile Include="NodeImplement.cs" />
     <Compile Include="NoteActivity.cs" />
     <Compile Include="Pie.cs" />
     <Compile Include="Pie2.cs" />
@@ -123,9 +122,6 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Neighborhood.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\NodeLayout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
