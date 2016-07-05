@@ -9,6 +9,9 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Geolocator.Plugin;
+
+
 
 namespace Xamarin
 {
@@ -29,7 +32,25 @@ namespace Xamarin
 
         private void Button_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(MainActivity));
+            ShareIt();
+        }
+
+        private async void ShareIt()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 50;
+
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+            
+
+            Intent sharingIntent = new Intent(global::Android.Content.Intent.ActionSend);
+            sharingIntent.SetType("text/plain");
+            // String hieronder wordt doorgegeven aan notitie. Hier moet dus geolocatie/straatnaam in
+            string toShare = "Haalllo"; 
+            sharingIntent.PutExtra(global::Android.Content.Intent.ExtraText, toShare);
+
+            StartActivity(Intent.CreateChooser(sharingIntent, "Share via"));
+
         }
     }
 }

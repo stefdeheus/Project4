@@ -12,4 +12,22 @@
     <string name="DistributionChart2">DistributionChart2</string>
     <string name="Neighborhoodchart">Neighborhoodchart</string>
     <string name="ApplicationName">Xamarin</string>
+
+  <string name="BeginDeel">Choose a neighborhood</string>
+  <string-array name="Deelgemeente">
+    <item>Feijenoord</item>
+    <item>Centrum</item>
+    <item>Charlois</item>
+    <item>Delfshaven</item>
+    <item>Hillegersberg</item>
+    <item>Hoogvliet</item>
+    <item>Ijsselmonde</item>
+    <item>Kralingen/Crooswijk</item>
+    <item>Noord</item>
+    <item>Ommoord</item>
+    <item>Overschie</item>
+    <item>Pernis</item>
+    <item>West</item>
+  </string-array>
+
 </resources>
