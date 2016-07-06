@@ -5,17 +5,35 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <TextView
+        android:text="Voer titel in:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4" />
     <EditText
         android:id="@+id/editText"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="93.0dp"
+        android:layout_marginBottom="19.0dp" />
     <TextView
-      android:id="@+id/textView"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"/>
+        android:text="Notitie:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3" />
+    <EditText
+        android:id="@+id/descriptionText"
+        android:layout_width="fill_parent"
+        android:layout_height="322.5dp"
+        android:layout_marginBottom="8.0dp" />
     <Button
         android:text="@string/Save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/SaveButton" />
+    <TextView
+        android:id="@+id/addressText"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
 </LinearLayout>

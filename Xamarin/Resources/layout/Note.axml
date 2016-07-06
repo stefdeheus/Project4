@@ -5,6 +5,19 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <TextView
+        android:text="Notitie:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/NotitieLabel"
+        android:layout_marginBottom="11.0dp" />
+    <EditText
+        android:text="Mijn fiets heb ik achtergelaten in de fietstrommel op de..."
+        android:layout_width="match_parent"
+        android:layout_height="335.0dp"
+        android:id="@+id/NotitieTextt"
+        android:layout_marginBottom="10.0dp" />
     <Button
         android:text="@string/Save"
         android:layout_width="match_parent"
