@@ -23,13 +23,13 @@ namespace DesktopApp
 
 
             string deelGemeente = "'" + SecondBar.deelGemeente + "'";
-            //string deelGemeente = SpecificNeighborhoodChart.deelGemeente;
+            //gets the string from the expander to change te query
             
 
 
 
 
-
+            //database connection
             string sdwConnectionString =
                @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -60,12 +60,13 @@ namespace DesktopApp
             SqlDataReader queryCommandReader1 = queryCommand1.ExecuteReader();
             DataTable stolen = new DataTable();
             stolen.Load(queryCommandReader1);
-
+            //datatable for stolen bycicles
             SqlDataReader queryCommandReader2 = queryCommand2.ExecuteReader();
             DataTable trommel = new DataTable();
             trommel.Load(queryCommandReader2);
-
+            //datatable for installed containers
             DataTable dataTable3 = new DataTable();
+            //datatble for merging
             dataTable3.Columns.Add("Maand", typeof(string));
             dataTable3.Columns.Add("Jaar", typeof(string));
             dataTable3.Columns.Add("DeelGemeente", typeof(string));
@@ -73,8 +74,9 @@ namespace DesktopApp
             dataTable3.Columns.Add("Aantal_Gestolen_Fietsen", typeof(Int32));
 
             DataTable dataTable4 = new DataTable();
+            // complete datatable
 
-
+            //table reader to read the data out of the datatables
             using (DataTableReader tableReader2 = trommel.CreateDataReader())
             {
                 foreach (DataRow row in trommel.Rows)

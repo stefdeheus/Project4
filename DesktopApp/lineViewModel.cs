@@ -31,7 +31,7 @@ namespace DesktopApp
             };
 
 
-
+            //database connection string
             string sdwConnectionString =
                 @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -43,13 +43,13 @@ namespace DesktopApp
             SqlCommand queryCommand = new SqlCommand(query, sdwDBConnection);
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
-
+            //datatable to load in the data
             dataTable.Load(queryCommandReader);
 
             List<int> amount = new List<int>();
             month = new List<int>();
             List<int> jaar = new List<int>();
-
+            //datatable reader to read the data out of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
 
@@ -64,7 +64,7 @@ namespace DesktopApp
 
                 tableReader.Close();
             }
-
+            //converting integers to doubles because the axes want to receive doubles
 
             double dob;
             List<double> newAmount = new List<double>();
@@ -106,7 +106,7 @@ namespace DesktopApp
             this.plot.Axes.Add(Xas);
             this.plot.Axes.Add(new LinearAxis { Title = "Amount of Bike's", Position = AxisPosition.Left, Maximum = 500, Minimum = 200, IsZoomEnabled = false, IsPanEnabled = false }); // max = 780 omdat dat grootste gestolen amount is per maand.
 
-
+            //adding axes and data to model
             this.plot.Series.Add(series);
 
 

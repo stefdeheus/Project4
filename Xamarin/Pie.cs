@@ -16,9 +16,9 @@ using OxyPlot.Series;
 
 namespace Xamarin
 {
-    class Pie : Graph
+    class Pie : AbstractPie
     {
-        public PlotModel CreatePlot()
+        public override PlotModel CreatePlot()
         {
             PlotModel plot;
             PieSeries series;
@@ -33,7 +33,7 @@ namespace Xamarin
                 AngleSpan = 360,
                 StartAngle = 0, Diameter = 0.8, FontSize = 20
             };
-
+            //connection string
             string sdwConnectionString =
               @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -50,8 +50,9 @@ namespace Xamarin
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
+            //datatable to store the data in
 
-
+            //tablereader to read the data out of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)

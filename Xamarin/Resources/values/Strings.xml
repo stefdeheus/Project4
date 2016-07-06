@@ -5,12 +5,12 @@
     <string name="Map">Map</string>
     <string name="Charts">Charts</string>
     <string name="TheftChart">TheftChart</string>
-    <string name="AmountChart">AmountChart</string>
-    <string name="DistributionChart">DistributionChart</string>
-    <string name="SpecificNeighborhoodChart">SpecificNeighborhoodChart</string>
+    <string name="AmountChart">LineChart</string>
+    <string name="DistributionChart">FirstPieChart</string>
+    <string name="SpecificNeighborhoodChart">SecondBarChart</string>
     <string name="Reminder">Reminder</string>
-    <string name="DistributionChart2">DistributionChart2</string>
-    <string name="Neighborhoodchart">Neighborhoodchart</string>
+    <string name="DistributionChart2">SecondPieChart</string>
+    <string name="Neighborhoodchart">FirstBarChart</string>
     <string name="ApplicationName">Xamarin</string>
 
   <string name="BeginDeel">Choose a neighborhood</string>

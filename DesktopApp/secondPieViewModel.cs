@@ -26,7 +26,7 @@ namespace DesktopApp
                 Diameter = 0.8,
                 FontSize = 20
             };
-
+            //database connection string
             string sdwConnectionString =
               @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -44,7 +44,10 @@ namespace DesktopApp
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
+            //datatbale to store the data
+
             List<string> kleuren = new List<string>();
+            //table reader to read the data of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)
@@ -59,6 +62,8 @@ namespace DesktopApp
 
             this.plot.Series.Add(series);
         }
+
+        //method for matching colors with actual colors
         public OxyColor kleur(string kleurString)
         {
             if (kleurString == "ZWART")

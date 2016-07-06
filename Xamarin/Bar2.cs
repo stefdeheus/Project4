@@ -18,14 +18,14 @@ using OxyPlot.Series;
 
 namespace Xamarin
 {
-    class Bar2 : Graph
+    class Bar2 : AbstractBar
     {
         
 
        
 
 
-        public PlotModel CreatePlot()
+        public override PlotModel CreatePlot()
         {
             var model = new PlotModel
             {
@@ -37,14 +37,14 @@ namespace Xamarin
             };
 
 
-            //string deelGemeente = "'Feijenoord'";
-            string deelGemeente = SpecificNeighborhoodChart.deelGemeente;
+            
+            string deelGemeente = SecondBarChart.deelGemeente;
 
             
 
 
 
-
+            //connection string
             string sdwConnectionString =
                @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -73,13 +73,15 @@ namespace Xamarin
             var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
 
             SqlDataReader queryCommandReader1 = queryCommand1.ExecuteReader();
+            //datatable of stolen bycicles
             DataTable stolen = new DataTable();
             stolen.Load(queryCommandReader1);
 
             SqlDataReader queryCommandReader2 = queryCommand2.ExecuteReader();
+            //datatble of installed containers
             DataTable trommel = new DataTable();
             trommel.Load(queryCommandReader2);
-            
+            //third datatable for merging
             DataTable dataTable3 = new DataTable();
             dataTable3.Columns.Add("Maand", typeof(string));
             dataTable3.Columns.Add("Jaar", typeof(string));
@@ -87,9 +89,10 @@ namespace Xamarin
             dataTable3.Columns.Add("Aantal_Geplaatste_Trommels", typeof(Int32));
             dataTable3.Columns.Add("Aantal_Gestolen_Fietsen", typeof(Int32));
 
+            // 4th datatable is the correct one
             DataTable dataTable4 = new DataTable();
 
-
+            //datatable reader for reading out the datatables
             using (DataTableReader tableReader2 = trommel.CreateDataReader())
             {
                 foreach (DataRow row in trommel.Rows)
@@ -181,52 +184,7 @@ namespace Xamarin
             sdwDBConnection.Close();
             Console.WriteLine();
  
-          
 
-
-            //var s1 = new BarSeries { Title = "Amount of installed bicycle containers", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            //s1.Items.Add(new BarItem { Value = 25 });
-            //s1.Items.Add(new BarItem { Value = 137 });
-            //s1.Items.Add(new BarItem { Value = 18 });
-            //s1.Items.Add(new BarItem { Value = 40 });
-            //s1.Items.Add(new BarItem { Value = 20 });
-            //s1.Items.Add(new BarItem { Value = 25 });
-            //s1.Items.Add(new BarItem { Value = 137 });
-            //s1.Items.Add(new BarItem { Value = 18 });
-            //s1.Items.Add(new BarItem { Value = 40 });
-            //s1.Items.Add(new BarItem { Value = 20 });
-            //s1.Items.Add(new BarItem { Value = 40 });
-            //s1.Items.Add(new BarItem { Value = 20 });
-
-            //var s2 = new BarSeries { Title = "Amount of stolen bicycles", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            //s2.Items.Add(new BarItem { Value = 25 });
-            //s2.Items.Add(new BarItem { Value = 137 });
-            //s2.Items.Add(new BarItem { Value = 18 });
-            //s2.Items.Add(new BarItem { Value = 40 });
-            //s2.Items.Add(new BarItem { Value = 20 });
-            //s2.Items.Add(new BarItem { Value = 25 });
-            //s2.Items.Add(new BarItem { Value = 137 });
-            //s2.Items.Add(new BarItem { Value = 18 });
-            //s2.Items.Add(new BarItem { Value = 40 });
-            //s2.Items.Add(new BarItem { Value = 20 });
-            //s2.Items.Add(new BarItem { Value = 40 });
-            //s2.Items.Add(new BarItem { Value = 20 });
-
-            //var categoryAxis = new CategoryAxis { Position = AxisPosition.Left };
-            //categoryAxis.Labels.Add("Neighborhood 1, January");
-            //categoryAxis.Labels.Add("Neighborhood 2, February");
-            //categoryAxis.Labels.Add("Neighborhood 3, March");
-            //categoryAxis.Labels.Add("Neighborhood 4, April");
-            //categoryAxis.Labels.Add("Neighborhood 5, May");
-            //categoryAxis.Labels.Add("Neighborhood 6, June");
-            //categoryAxis.Labels.Add("Neighborhood 7, July");
-            //categoryAxis.Labels.Add("Neighborhood 8, August");
-            //categoryAxis.Labels.Add("Neighborhood 9, Septembre");
-            //categoryAxis.Labels.Add("Neighborhood 10, October");
-            //categoryAxis.Labels.Add("Neighborhood 11, November"); 
-            //categoryAxis.Labels.Add("Neighborhood 12, December");
-
-           
             model.Series.Add(StolenBikeBar);
             model.Series.Add(InstalledContainerBar);
             model.Axes.Add(categoryAxis);

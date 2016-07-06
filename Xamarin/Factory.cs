@@ -12,39 +12,60 @@ using Android.Widget;
 
 namespace Xamarin
 {
-    class Factory
+    //all our factories
+
+    interface Factory
     {
-        public Graph Create(int number)
+        Graph create();
+    }
+
+    class lineFac : Factory
+    {
+        public Graph create()
         {
-            if (number == 1)
-            {
-                return new Line();
-            }
+            return new Line();
+        }
+    }
 
-            else if (number == 2)
-            {
-                return new Pie();
-            }
+    abstract class abstractBarFac : Factory
+    {
+        public abstract Graph create();
+    }
 
-            else if (number == 3)
-            {
-                return new Pie2();
-            }
+    class BarFacFac1 : abstractBarFac
+    {
+        public override Graph create()
+        {
+            return new Bar();
+        }
+    }
 
-            else if (number == 4)
-            {
-                return new Bar();
-            }
+    class BarFacFac2 : abstractBarFac
+    {
+        public override Graph create()
+        {
+            return new Bar2();
+        }
+    }
 
-            else if (number == 5)
-            {
-                return new Bar2();
-            }
+    abstract class abstractPieFac : Factory
+    {
+        public abstract Graph create();
+    }
 
-            else
-            {
-                return null;
-            }
+    class PieFacFac1 : abstractPieFac
+    {
+        public override Graph create()
+        {
+            return new Pie();
+        }
+    }
+
+    class PieFacFac2 : abstractPieFac
+    {
+        public override Graph create()
+        {
+            return new Pie2();
         }
     }
 }

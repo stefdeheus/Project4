@@ -13,7 +13,7 @@ using Android.Widget;
 namespace Xamarin
 {
     [Activity(Label = "MapActivity")]
-    public class MapActivity : Activity
+    public class MapActivity : AbstractActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

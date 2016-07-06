@@ -18,10 +18,11 @@ using OxyPlot.Series;
 
 namespace Xamarin
 {
-    class Bar : Graph
+    class Bar : AbstractBar
     {
-        public PlotModel CreatePlot()
+        public override PlotModel CreatePlot()
         {
+
             var model = new PlotModel
             {
                 Title = "The 5 neighborhoods with the biggest amount of bicycle containers",
@@ -32,7 +33,7 @@ namespace Xamarin
                 DefaultFontSize = 20
             };
 
-
+            //Connection to database string
             string sdwConnectionString =
                 @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -46,6 +47,7 @@ namespace Xamarin
                 ;";
             SqlCommand queryCommand = new SqlCommand(query, sdwDBConnection);
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
+            //Datatable where data is loaded in
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
 
@@ -53,6 +55,7 @@ namespace Xamarin
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, IsZoomEnabled = false, IsPanEnabled = false};
             var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0, IsZoomEnabled = false, IsPanEnabled = false};
 
+            //Datatablereader for reading out the data table
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)

@@ -8,7 +8,7 @@ using Uri = Android.Net.Uri;
 namespace Xamarin
 {
     [Activity(Label = "ReminderActivity")]
-    public class ReminderActivity : Activity
+    public class ReminderActivity : AbstractActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

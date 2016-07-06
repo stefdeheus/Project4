@@ -16,7 +16,7 @@ using Geolocator.Plugin;
 namespace Xamarin
 {
     [Activity(Label = "NoteActivity")]
-    public class NoteActivity : Activity
+    public class NoteActivity : AbstractActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

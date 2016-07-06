@@ -41,10 +41,10 @@ namespace Xamarin
             };
 
 
-
+            //connection string
             string sdwConnectionString =
                 @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
-
+            //sets up database connection
             var sdwDBConnection = new SqlConnection(sdwConnectionString);
             sdwDBConnection.Open();
             string query =
@@ -53,13 +53,13 @@ namespace Xamarin
             SqlCommand queryCommand = new SqlCommand(query, sdwDBConnection);
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
-            
+            //datatable to store data
             dataTable.Load(queryCommandReader);
 
             List<int> amount = new List<int>();
             month = new List<int>();
             List<int> jaar = new List<int>();
-
+            //tablereader reads data
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
 
@@ -75,7 +75,7 @@ namespace Xamarin
                 tableReader.Close();
             }
 
-
+            //converting because the axis want to receive doubles instead of integers
             double dob;
             List<double> newAmount = new List<double>();
             foreach (int am in amount)
@@ -89,7 +89,7 @@ namespace Xamarin
             for (int i = 0; i < newAmount.Count; i++)
             {
                 Jaar = Convert.ToInt32(jaar[i]);
-                
+                //adds data to axis
                 series.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(Jaar, month[i], 1)), newAmount[i]));              
             }
               

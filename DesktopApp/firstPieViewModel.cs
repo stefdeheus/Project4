@@ -26,7 +26,7 @@ namespace DesktopApp
                 Diameter = 0.8,
                 FontSize = 20
             };
-
+            //databaste connection string
             string sdwConnectionString =
                 @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -43,8 +43,9 @@ namespace DesktopApp
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
+            //datatable to load in the data 
 
-
+            //table reader to read out the data of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)

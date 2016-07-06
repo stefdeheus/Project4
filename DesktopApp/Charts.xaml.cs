@@ -25,6 +25,7 @@ namespace DesktopApp
             InitializeComponent();
             
         }
+        // button click events to go to new windows
 
         private void button_Click(object sender, RoutedEventArgs e)
         {

@@ -14,8 +14,8 @@ using OxyPlot.Xamarin.Android;
 
 namespace Xamarin
 {
-    [Activity(Label = "NeighborhoodChart")]
-    public class NeighborhoodChart : Activity
+    [Activity(Label = "DistributionChartActivity")]
+    public class FirstPieChart : AbstractActivity
     {
         PlotView plotView;
         Factory dp;
@@ -25,17 +25,16 @@ namespace Xamarin
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-
-            dp = new Factory();
-            grafiek = dp.Create(4);
+            //creates factory and instanciates graph
+            dp = new PieFacFac1();
+            grafiek = dp.create();
 
             plotView = new PlotView(this);
+            //plots the graph
             plotView.Model = grafiek.CreatePlot();
 
             this.AddContentView(plotView,
             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
-
-
         }
     }
 }

@@ -22,7 +22,7 @@ namespace DesktopApp
                 DefaultFontSize = 20
             };
 
-
+            //database string connection
             string sdwConnectionString =
                 @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -38,11 +38,11 @@ namespace DesktopApp
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
-
+            //datatable to load in the data
             var barSeries = new BarSeries() { Title = "Amount of bicycle containers", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
             var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, IsZoomEnabled = false, IsPanEnabled = false };
             var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0, IsZoomEnabled = false, IsPanEnabled = false };
-
+            //datatable reader to read the data out of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)
@@ -53,7 +53,7 @@ namespace DesktopApp
                 tableReader.Close();
             }
             sdwDBConnection.Close();
-
+            //adds the data to the model
             this.model.Series.Add(barSeries);
             this.model.Axes.Add(categoryAxis);
             this.model.Axes.Add(valueAxis);
