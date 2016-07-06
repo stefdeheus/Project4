@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DesktopApp
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SecondPie.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SecondPie : Window
     {
-        public MainWindow()
+        public SecondPie()
         {
             InitializeComponent();
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            var newWindow = new Window1();
-            newWindow.Show();
         }
     }
 }

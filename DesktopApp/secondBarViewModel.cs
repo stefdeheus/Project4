@@ -1,33 +1,18 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Renderscripts;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace Xamarin
+namespace DesktopApp
 {
-    class Bar2 : AbstractBar
+    class secondBarViewModel
     {
-        
-
-       
-
-
-        public override PlotModel CreatePlot()
+        public PlotModel model { get; set; }
+        public secondBarViewModel()
         {
-            var model = new PlotModel
+            this.model = new PlotModel
             {
                 Title = "The amount of stolen bicycles and amount of installed bicycle containers per month given a specific neighborhood",
                 LegendPlacement = LegendPlacement.Outside,
@@ -37,14 +22,14 @@ namespace Xamarin
             };
 
 
+            string deelGemeente = "'" + SecondBar.deelGemeente + "'";
+            //gets the string from the expander to change te query
             
-            string deelGemeente = SecondBarChart.deelGemeente;
-
-            
 
 
 
-            //connection string
+
+            //database connection
             string sdwConnectionString =
                @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -54,7 +39,7 @@ namespace Xamarin
                            SELECT DATENAME(mm, newKennisname) AS Maand, DATENAME(yyyy, newKennisname) AS Jaar, w.Deelgemeenten, COUNT(DISTINCT Voorval_nummer) AS Aantal_Gestolen_Fietsen
                            FROM Wijken w, fietsdiefstal fd
                            WHERE w.Buurten = fd.Buurt
-                           AND w.Deelgemeenten = " + deelGemeente + " " + 
+                           AND w.Deelgemeenten = " + deelGemeente + " " +
                                    "GROUP BY DATENAME(mm, newKennisname), DATENAME(yyyy, newKennisname), DATEPART(mm, newKennisname), w.Deelgemeenten ORDER BY Jaar ASC, DATEPART(mm, newKennisname) ASC;";
 
             string queryfietstrommel = @"
@@ -63,7 +48,7 @@ namespace Xamarin
                                        WHERE w.Deelgemeenten = ft.Deelgemeente
                                        AND w.Deelgemeenten =" + deelGemeente + " " +
                                        "GROUP BY DATENAME(mm, Mutdatum), DATENAME(yyyy, Mutdatum), DATEPART(mm, Mutdatum), w.Deelgemeenten ORDER BY Jaar ASC, DATEPART(mm, Mutdatum) ASC;";
-                                       
+
             SqlCommand queryCommand1 = new SqlCommand(querydiefstal, sdwDBConnection);
             SqlCommand queryCommand2 = new SqlCommand(queryfietstrommel, sdwDBConnection);
 
@@ -73,26 +58,25 @@ namespace Xamarin
             var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0 };
 
             SqlDataReader queryCommandReader1 = queryCommand1.ExecuteReader();
-            //datatable of stolen bycicles
             DataTable stolen = new DataTable();
             stolen.Load(queryCommandReader1);
-
+            //datatable for stolen bycicles
             SqlDataReader queryCommandReader2 = queryCommand2.ExecuteReader();
-            //datatble of installed containers
             DataTable trommel = new DataTable();
             trommel.Load(queryCommandReader2);
-            //third datatable for merging
+            //datatable for installed containers
             DataTable dataTable3 = new DataTable();
+            //datatble for merging
             dataTable3.Columns.Add("Maand", typeof(string));
             dataTable3.Columns.Add("Jaar", typeof(string));
             dataTable3.Columns.Add("DeelGemeente", typeof(string));
             dataTable3.Columns.Add("Aantal_Geplaatste_Trommels", typeof(Int32));
             dataTable3.Columns.Add("Aantal_Gestolen_Fietsen", typeof(Int32));
 
-            // 4th datatable is the correct one
             DataTable dataTable4 = new DataTable();
+            // complete datatable
 
-            //datatable reader for reading out the datatables
+            //table reader to read the data out of the datatables
             using (DataTableReader tableReader2 = trommel.CreateDataReader())
             {
                 foreach (DataRow row in trommel.Rows)
@@ -101,7 +85,7 @@ namespace Xamarin
                     dataRow[0] = row[0];
                     dataRow[1] = row[1];
                     dataRow[2] = row[2];
-                    dataRow[3] = row[3];                    
+                    dataRow[3] = row[3];
                     string trommelString = (row[0] + " " + row[1]);
 
                     using (DataTableReader tableReader1 = stolen.CreateDataReader())
@@ -161,18 +145,18 @@ namespace Xamarin
                 {
                     string datum = row[0] + " " + row[1];
                     categoryAxis.Labels.Add(datum);
-                    if(row[4] == DBNull.Value) { StolenBikeBar.Items.Add(new BarItem { Value = 0 }); }
+                    if (row[4] == DBNull.Value) { StolenBikeBar.Items.Add(new BarItem { Value = 0 }); }
                     else
                     {
                         StolenBikeBar.Items.Add(new BarItem { Value = Convert.ToDouble(row[4]) });
                     }
-                    if(row[3] == DBNull.Value) { InstalledContainerBar.Items.Add(new BarItem { Value = 0 }); }
+                    if (row[3] == DBNull.Value) { InstalledContainerBar.Items.Add(new BarItem { Value = 0 }); }
                     else
                     {
                         InstalledContainerBar.Items.Add(new BarItem { Value = Convert.ToDouble(row[3]) });
                     }
-                    
-                    
+
+
                 }
 
 
@@ -180,17 +164,15 @@ namespace Xamarin
             }
 
 
-            
+
             sdwDBConnection.Close();
             Console.WriteLine();
- 
 
-            model.Series.Add(StolenBikeBar);
-            model.Series.Add(InstalledContainerBar);
-            model.Axes.Add(categoryAxis);
-            model.Axes.Add(valueAxis);
 
-            return model;
+            this.model.Series.Add(StolenBikeBar);
+            this.model.Series.Add(InstalledContainerBar);
+            this.model.Axes.Add(categoryAxis);
+            this.model.Axes.Add(valueAxis);
         }
     }
 }

@@ -42,27 +42,27 @@ namespace Xamarin
 
         private void Button6_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(NeighborhoodChart));
+            StartActivity(typeof(FirstBarChart));
         }
 
         private void Button5_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(DistributionChartActivity2));
+            StartActivity(typeof(SecondPieChart));
         }
 
         private void Button4_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(SpecificNeighborhoodChart));
+            StartActivity(typeof(SecondBarChart));
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(DistributionChartActivity));
+            StartActivity(typeof(FirstPieChart));
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            StartActivity(typeof(AmountChartActivity));
+            StartActivity(typeof(LineChart));
         }
     }
 }

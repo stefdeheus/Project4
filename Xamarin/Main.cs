@@ -9,7 +9,7 @@ using Android.OS;
 namespace Xamarin
 {
     [Activity(Label = "Optrommelen", MainLauncher = true, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    public class Main : AbstractActivity
     {
 
         protected override void OnCreate(Bundle bundle)

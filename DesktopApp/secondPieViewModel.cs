@@ -2,37 +2,31 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using OxyPlot;
 using OxyPlot.Series;
 
-namespace Xamarin
+namespace DesktopApp
 {
-    class Pie2 : AbstractPie
+    class secondPieViewModel
     {
-        public override PlotModel CreatePlot()
+        public PlotModel plot { get; set; }
+        public secondPieViewModel()
         {
-            PlotModel plot;
+            
             PieSeries series;
 
-            plot = new PlotModel { Title = "Most stolen bicycle colors" };
+            this.plot = new PlotModel { Title = "Most stolen bicycle colors" };
 
             series = new PieSeries
             {
                 StrokeThickness = 0.5,
                 InsideLabelPosition = 0.8,
                 AngleSpan = 360,
-                StartAngle = 0, Diameter = 0.8, FontSize = 20
+                StartAngle = 0,
+                Diameter = 0.8,
+                FontSize = 20
             };
-            //datbase string connection
+            //database connection string
             string sdwConnectionString =
               @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -50,27 +44,26 @@ namespace Xamarin
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
-            //datatable to load the data in
+            //datatbale to store the data
+
             List<string> kleuren = new List<string>();
-            //tablereader to read the data out of the datatable
+            //table reader to read the data of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    series.Slices.Add(new PieSlice(row[0].ToString(), Convert.ToInt32(row[1])) {Fill = kleur(row[0].ToString())});
+                    series.Slices.Add(new PieSlice(row[0].ToString(), Convert.ToInt32(row[1])) { Fill = kleur(row[0].ToString()) });
                     kleuren.Add(row[0].ToString());
                 }
                 tableReader.Close();
             }
 
-                sdwDBConnection.Close();
+            sdwDBConnection.Close();
 
-            plot.Series.Add(series);
-
-            return plot;
+            this.plot.Series.Add(series);
         }
 
-        //method to add colors to plot
+        //method for matching colors with actual colors
         public OxyColor kleur(string kleurString)
         {
             if (kleurString == "ZWART")

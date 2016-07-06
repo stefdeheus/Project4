@@ -1,29 +1,18 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
 
-namespace Xamarin
+namespace DesktopApp
 {
-    class Bar : AbstractBar
+    class firstBarViewModel
     {
-        public override PlotModel CreatePlot()
+        public PlotModel model { get; set; }
+        public firstBarViewModel()
         {
-
-            var model = new PlotModel
+            this.model = new PlotModel
             {
                 Title = "The 5 neighborhoods with the biggest amount of bicycle containers",
                 LegendPlacement = LegendPlacement.Outside,
@@ -33,7 +22,7 @@ namespace Xamarin
                 DefaultFontSize = 20
             };
 
-            //Connection to database string
+            //database string connection
             string sdwConnectionString =
                 @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
@@ -47,31 +36,27 @@ namespace Xamarin
                 ;";
             SqlCommand queryCommand = new SqlCommand(query, sdwDBConnection);
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
-            //Datatable where data is loaded in
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
-
+            //datatable to load in the data
             var barSeries = new BarSeries() { Title = "Amount of bicycle containers", StrokeColor = OxyColors.Black, StrokeThickness = 1 };
-            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, IsZoomEnabled = false, IsPanEnabled = false};
-            var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0, IsZoomEnabled = false, IsPanEnabled = false};
-
-            //Datatablereader for reading out the data table
+            var categoryAxis = new CategoryAxis { Position = AxisPosition.Left, IsZoomEnabled = false, IsPanEnabled = false };
+            var valueAxis = new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0, MaximumPadding = 0.06, AbsoluteMinimum = 0, IsZoomEnabled = false, IsPanEnabled = false };
+            //datatable reader to read the data out of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)
                 {
-                    barSeries.Items.Add(new BarItem {Value = Convert.ToDouble(row[1])} );
+                    barSeries.Items.Add(new BarItem { Value = Convert.ToDouble(row[1]) });
                     categoryAxis.Labels.Add(row[0].ToString());
                 }
                 tableReader.Close();
             }
-                sdwDBConnection.Close();
-
-            model.Series.Add(barSeries);
-            model.Axes.Add(categoryAxis);
-            model.Axes.Add(valueAxis);
-
-            return model;
+            sdwDBConnection.Close();
+            //adds the data to the model
+            this.model.Series.Add(barSeries);
+            this.model.Axes.Add(categoryAxis);
+            this.model.Axes.Add(valueAxis);
         }
     }
 }

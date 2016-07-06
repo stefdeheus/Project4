@@ -9,7 +9,7 @@ using Android.Widget;
 namespace Xamarin
 {
     [Activity(Label = "ReminderActivity")]
-    public class ReminderActivity : Activity
+    public class ReminderActivity : AbstractActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

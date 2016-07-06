@@ -14,8 +14,8 @@ using OxyPlot.Xamarin.Android;
 
 namespace Xamarin
 {
-    [Activity(Label = "DistributionChartActivity2")]
-    public class DistributionChartActivity2 : Activity
+    [Activity(Label = "AmountChartActivity")]
+    public class LineChart : AbstractActivity
     {
         PlotView plotView;
         Factory dp;
@@ -25,15 +25,16 @@ namespace Xamarin
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-
-            dp = new Factory();
-            grafiek = dp.Create(3);
-
+            //intanciates factory and graph
+            dp = new lineFac();
+            grafiek = dp.create();
+            //plots the graph
             plotView = new PlotView(this);
             plotView.Model = grafiek.CreatePlot();
 
             this.AddContentView(plotView,
-            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, 1200));
+
         }
     }
 }

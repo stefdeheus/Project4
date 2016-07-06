@@ -1,41 +1,34 @@
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using OxyPlot;
 using OxyPlot.Series;
 
-namespace Xamarin
+namespace DesktopApp
 {
-    class Pie : AbstractPie
+    class firstPieViewModel
     {
-        public override PlotModel CreatePlot()
+        public PlotModel plot { get; set; }
+        public firstPieViewModel()
         {
-            PlotModel plot;
-            PieSeries series;
             
+            PieSeries series;
 
-            plot = new PlotModel { Title = "Most stolen bicycle brands"};
+
+            this.plot = new PlotModel { Title = "Most stolen bicycle brands" };
 
             series = new PieSeries
             {
                 StrokeThickness = 0.5,
                 InsideLabelPosition = 0.8,
                 AngleSpan = 360,
-                StartAngle = 0, Diameter = 0.8, FontSize = 20
+                StartAngle = 0,
+                Diameter = 0.8,
+                FontSize = 20
             };
-            //connection string
+            //databaste connection string
             string sdwConnectionString =
-              @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
+                @"Server = tcp:infproj4.database.windows.net,1433; Data Source = infproj4.database.windows.net; Initial Catalog = FietstrommelProject; Persist Security Info = False; User ID = raymundo; Password = 97475Thy!; MultipleActiveResultSets = False; Connection Timeout = 30;";
 
             var sdwDBConnection = new SqlConnection(sdwConnectionString);
             sdwDBConnection.Open();
@@ -50,9 +43,9 @@ namespace Xamarin
             SqlDataReader queryCommandReader = queryCommand.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(queryCommandReader);
-            //datatable to store the data in
+            //datatable to load in the data 
 
-            //tablereader to read the data out of the datatable
+            //table reader to read out the data of the datatable
             using (DataTableReader tableReader = dataTable.CreateDataReader())
             {
                 foreach (DataRow row in dataTable.Rows)
@@ -63,9 +56,7 @@ namespace Xamarin
             }
 
             sdwDBConnection.Close();
-            plot.Series.Add(series);
-
-            return plot;
+            this.plot.Series.Add(series);
         }
     }
 }

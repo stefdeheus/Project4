@@ -68,26 +68,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractActivity.cs" />
+    <Compile Include="AbstractBar.cs" />
+    <Compile Include="AbstractPie.cs" />
     <Compile Include="Bar.cs" />
     <Compile Include="Bar2.cs" />
     <Compile Include="DBConnectTest.cs" />
-    <Compile Include="AmountChartActivity.cs" />
+    <Compile Include="LineChart.cs" />
     <Compile Include="ChartsActivity.cs" />
-    <Compile Include="DistributionChartActivity.cs" />
-    <Compile Include="DistributionChartActivity2.cs" />
+    <Compile Include="FirstPieChart.cs" />
+    <Compile Include="SecondPieChart.cs" />
     <Compile Include="Factory.cs" />
     <Compile Include="Graph.cs" />
     <Compile Include="Line.cs" />
-    <Compile Include="MainActivity.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="MapActivity.cs" />
-    <Compile Include="NeighborhoodChart.cs" />
+    <Compile Include="FirstBarChart.cs" />
     <Compile Include="NoteActivity.cs" />
     <Compile Include="Pie.cs" />
     <Compile Include="Pie2.cs" />
     <Compile Include="ReminderActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecificNeighborhoodChart.cs" />
+    <Compile Include="SecondBarChart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

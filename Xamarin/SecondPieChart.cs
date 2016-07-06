@@ -14,8 +14,8 @@ using OxyPlot.Xamarin.Android;
 
 namespace Xamarin
 {
-    [Activity(Label = "DistributionChartActivity")]
-    public class DistributionChartActivity : Activity
+    [Activity(Label = "DistributionChartActivity2")]
+    public class SecondPieChart : AbstractActivity
     {
         PlotView plotView;
         Factory dp;
@@ -25,12 +25,13 @@ namespace Xamarin
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-
-            dp = new Factory();
-            grafiek = dp.Create(2);
+            //instanciate factory and graph
+            dp = new PieFacFac2();
+            grafiek = dp.create();
 
             plotView = new PlotView(this);
             plotView.Model = grafiek.CreatePlot();
+            //plots the graph
 
             this.AddContentView(plotView,
             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));

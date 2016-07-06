@@ -14,8 +14,8 @@ using OxyPlot.Xamarin.Android;
 
 namespace Xamarin
 {
-    [Activity(Label = "AmountChartActivity")]
-    public class AmountChartActivity : Activity
+    [Activity(Label = "NeighborhoodChart")]
+    public class FirstBarChart : AbstractActivity
     {
         PlotView plotView;
         Factory dp;
@@ -25,15 +25,18 @@ namespace Xamarin
             base.OnCreate(savedInstanceState);
 
             // Create your application here
-
-            dp = new Factory();
-            grafiek = dp.Create(1);
+            //instanciates factory
+            dp = new BarFacFac1();
+            //create graph
+            grafiek = dp.create();
 
             plotView = new PlotView(this);
+            //plots the graph
             plotView.Model = grafiek.CreatePlot();
 
             this.AddContentView(plotView,
-            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, 1200));
+            new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
+
 
         }
     }
