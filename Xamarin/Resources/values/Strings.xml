@@ -15,19 +15,27 @@
 
   <string name="BeginDeel">Choose a neighborhood</string>
   <string-array name="Deelgemeente">
-    <item>Feijenoord</item>
-    <item>Centrum</item>
-    <item>Charlois</item>
-    <item>Delfshaven</item>
-    <item>Hillegersberg</item>
-    <item>Hoogvliet</item>
-    <item>Ijsselmonde</item>
-    <item>Kralingen/Crooswijk</item>
-    <item>Noord</item>
-    <item>Ommoord</item>
-    <item>Overschie</item>
-    <item>Pernis</item>
-    <item>West</item>
+    <item>\'Feijenoord\'</item>
+    <item>\'Botlek-Europoort-Maasvlakte\'</item>
+    <item>\'Centrum\'</item>
+    <item>\'Charlois\'</item>
+    <item>\'Delfshaven\'</item>
+    <item>\'Hilligersberg\'</item>
+    <item>\'Hoek van Holland\'</item>
+    <item>\'Hoogvliet\'</item>
+    <item>\'Kralingen/Crooswijk\'</item>
+    <item>\'Nieuw Mathenesse\'</item>
+    <item>\'Noord\'</item>
+    <item>\'Overschie\'</item>
+    <item>\'Pernis\'</item>
+    <item>\'Prins Alexander\'</item>
+    <item>\'Rivium\'</item>
+    <item>\'Rottedam-Noord-West\'</item>
+    <item>\'Schieveen\'</item>
+    <item>\'Spaanse Polder\'</item>
+    <item>\'Vondelingsplaat\'</item>
+    <item>\'Waalhaven/Eemhaven\'</item>
+  
   </string-array>
 
 </resources>

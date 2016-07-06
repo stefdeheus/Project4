@@ -20,12 +20,14 @@ namespace Xamarin
         PlotView plotView;
         Factory dp;
         Graph grafiek;
+        public static string deelGemeente;
+        
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.SpecificNeighborhood);
             // Create your application here
-
+            deelGemeente = "'Feijenoord'";
             Spinner spinner = FindViewById<Spinner>(Resource.Id.spinner1);
             spinner.ItemSelected += Spinner_ItemSelected;
             var adapter = ArrayAdapter.CreateFromResource(
@@ -38,7 +40,7 @@ namespace Xamarin
 
             this.plotView = FindViewById<PlotView>(Resource.Id.bar2);
             plotView.Model = grafiek.CreatePlot();
-
+            
 
 
             //plotView = new PlotView(this);
@@ -49,10 +51,13 @@ namespace Xamarin
             //new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent));
         }
 
-        private void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        public void Spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             Spinner spinner = (Spinner)sender;
+            deelGemeente = spinner.GetItemAtPosition(e.Position).ToString();
             
+            plotView.Model = grafiek.CreatePlot();
+            Console.WriteLine(  );
         }
     }
 }
